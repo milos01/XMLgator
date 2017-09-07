@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/XML/tim8/korisnik"
+    targetNamespace="http://www.ftn.uns.ac.rs/XML/tim8/korisnik" elementFormDefault="qualified">
+
+    <xs:element name="korisnik">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ime" type="xs:string"/>
+                <xs:element name="prezime" type="xs:string"/>
+                <xs:element name="tip">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="gradjanin"/>
+                            <xs:enumeration value="odbornik"/>
+                            <xs:enumeration value="predsednik"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="username" use="required" type="xs:string"> </xs:attribute>
+            <xs:attribute name="ID" type="xs:ID" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/XML/tim8/akt"
+    targetNamespace="http://www.ftn.uns.ac.rs/XML/tim8/akt">
+    <xs:element name="akt">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element maxOccurs="unbounded" name="deo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="glava" minOccurs="2">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:element maxOccurs="unbounded" minOccurs="1"
+                                            name="odeljak" nillable="false">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="1"
+                                                  name="pododeljak">
+                                                  	<xs:complexType>
+                                                  		<xs:sequence>
+                                                  			<xs:element maxOccurs="unbounded" ref="clan"/>
+                                                  		</xs:sequence>
+                                                  		<xs:attribute name="redni_broj" use="required">
+                                                  			<xs:simpleType>
+                                                  				<xs:restriction base="xs:int">
+                                                  					<xs:minInclusive value="1"/>
+                                                  				</xs:restriction>
+                                                  			</xs:simpleType>
+                                                  		</xs:attribute>
+                                                  		<xs:attribute name="naziv" type="xs:string"
+                                                  		use="required"/>
+                                                  	</xs:complexType>
+                                                  </xs:element>
+                                                  <xs:element maxOccurs="unbounded" minOccurs="1"
+                                                  ref="clan"/>
+                                                </xs:choice>
+                                                <xs:attribute name="redni_broj" use="required"/>
+                                                <xs:attribute name="naziv" type="xs:string"
+                                                  use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element maxOccurs="unbounded" minOccurs="1" ref="clan"/>
+                                    </xs:choice>
+                                    <xs:attribute name="redni_broj" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:int">
+                                                <xs:minInclusive value="1"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="naziv" type="xs:string" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="redni_broj" use="required">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="naziv" type="xs:string"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" ref="clan"/>
+            </xs:choice>
+            <xs:attribute name="naziv" type="xs:string" use="required"/>
+            <xs:attribute ref="ID" use="required"/>
+            <xs:attribute name="datum_donosenja" type="xs:date"/>
+            <xs:attribute name="osnov_donosenja" type="xs:string"/>
+            <xs:attribute name="status" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="PREDLOZEN"/>
+                        <xs:enumeration value="USVOJEN"/>
+                        <xs:enumeration value="ODBIJEN"/>
+                        <xs:enumeration value="POVUCEN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="odbornik" type="xs:string" use="required"/>
+            <xs:attribute name="raw_id" type="xs:string" use="required"/>
+            <xs:attribute name="za" type="xs:int"/>
+            <xs:attribute name="protiv" type="xs:int"/>
+            <xs:attribute name="uzdrzano" type="xs:int"/>
+            <xs:attribute name="procenat" type="xs:double"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element abstract="false" name="clan">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="stav" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute ref="ID" use="required"/>
+            <xs:attribute name="redni_broj" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="naziv" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="ID" type="xs:string"> </xs:attribute>
+    <xs:element name="stav">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="tacka"/>
+            </xs:sequence>
+            <xs:attribute ref="ID" use="required"/>
+            <xs:attribute name="redni_broj" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tacka">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="podtacka"/>
+            </xs:sequence>
+            <xs:attribute name="redni_broj" form="unqualified" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute ref="ID"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podtacka">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="alineja"/>
+            </xs:sequence>
+            <xs:attribute name="redni_broj" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute ref="ID"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="alineja">
+        <xs:complexType mixed="true">
+            <xs:attribute name="redni_broj" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute ref="ID"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.ftn.uns.ac.rs/XML/tim8/amandman"
+    targetNamespace="http://www.ftn.uns.ac.rs/XML/tim8/amandman" elementFormDefault="qualified"
+    xmlns:akt="http://www.ftn.uns.ac.rs/XML/tim8/akt">
+    <xs:import namespace="http://www.ftn.uns.ac.rs/XML/tim8/akt" schemaLocation="akt.xsd"/>
+    <xs:element name="amandman">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="promena"/>
+            </xs:sequence>
+            <xs:attribute name="ID" use="required" type="xs:string"> </xs:attribute>
+            <xs:attribute name="naziv" type="xs:string" use="required"/>
+            <xs:attribute name="pravni_osnov" type="xs:string" use="required"/>
+            <xs:attribute name="akt" type="xs:string" use="required"/>
+            <xs:attribute name="odbornik" type="xs:string" use="required"/>
+            <xs:attribute name="status" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="PREDLOZEN"/>
+                        <xs:enumeration value="USVOJEN"/>
+                        <xs:enumeration value="ODBIJEN"/>
+                        <xs:enumeration value="POVUCEN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="za" type="xs:int"/>
+            <xs:attribute name="protiv" type="xs:int"/>
+            <xs:attribute name="uzdrzano" type="xs:int"/>
+            <xs:attribute name="raw_id" type="xs:string" use="required"/>
+            <xs:attribute name="procenat" type="xs:double"/>
+            <xs:attribute name="akt_raw_id" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="promena">
+        <xs:complexType mixed="true">
+            <xs:choice>
+                <xs:element minOccurs="0" ref="akt:clan"/>
+                <xs:element minOccurs="0" ref="akt:stav"/>
+                <xs:element minOccurs="0" ref="akt:tacka"/>
+                <xs:element minOccurs="0" ref="akt:podtacka"/>
+                <xs:element minOccurs="0" ref="akt:alineja"/>
+            </xs:choice>
+            <xs:attribute name="ID" use="required" type="xs:string"> </xs:attribute>
+            <xs:attribute name="odredba" type="xs:string" use="required"/>
+            <xs:attribute name="tip" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="brisanje"/>
+                        <xs:enumeration value="izmena"/>
+                        <xs:enumeration value="dopuna"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="sluzbeno_glasilo" type="xs:string" use="required"/>
+            <xs:attribute name="obrazlozenje" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
