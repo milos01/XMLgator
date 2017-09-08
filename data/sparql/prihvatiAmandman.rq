@@ -1,0 +1,13 @@
+# prihvata jedan amandman
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+WITH <http://www.ftn.uns.ac.rs/XML/tim12/metadata/amandman>
+INSERT {
+	<%1$s> pred:amandman_procenat '%2$.2f'.
+	<%1$s> pred:amandman_za '%3$d'.
+	<%1$s> pred:amandman_protiv '%4$d'.
+	<%1$s> pred:amandman_uzdrzano '%5$d'.
+} WHERE {
+	<%1$s> pred:amandman_naziv ?naziv.
+}

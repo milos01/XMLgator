@@ -1,0 +1,13 @@
+# Vraca sve amandmane predlozene na akt
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+SELECT * FROM <http://www.ftn.uns.ac.rs/XML/tim12/metadata/amandman>
+WHERE {
+	?id pred:amandman_naziv ?naziv.
+	?id pred:amandman_status ?status.
+	?id pred:amandman_odbornik ?odbornik. 
+	?id pred:amandman_raw_id ?raw_id.
+	?id pred:amandman_pravni_osnov ?pravni_osnov.
+	?id pred:amandman_akt <%s>.
+}

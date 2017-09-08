@@ -1,0 +1,12 @@
+# Vraca sve akte koji imaju jedan od definisanih id-ova 
+
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+SELECT * FROM <http://www.ftn.uns.ac.rs/XML/tim12/metadata/akt> WHERE { 
+	?id pred:akt_naziv ?naziv. 
+	?id pred:akt_status ?status. 
+	?id pred:akt_odbornik ?odbornik.  
+	?id pred:akt_raw_id ?raw_id. 
+	VALUES ?id { %s } 
+}

@@ -1,0 +1,14 @@
+# povlaci jedan amandman
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+WITH <http://www.ftn.uns.ac.rs/XML/tim12/metadata/amandman>
+DELETE {
+	<%1$s> pred:amandman_status 'PREDLOZEN'.
+}
+INSERT {
+	<%1$s> pred:amandman_status 'POVUCEN'.
+}
+WHERE {
+	<%1$s> pred:amandman_status 'PREDLOZEN'.
+}

@@ -1,0 +1,11 @@
+
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+WITH <http://www.ftn.uns.ac.rs/XML/tim12/metadata/akt>
+DELETE {
+	<%1$s> pred:akt_datum_donosenja ?datum.
+}
+WHERE {
+	<%1$s> pred:akt_datum_donosenja ?datum.
+}

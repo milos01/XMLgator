@@ -1,0 +1,8 @@
+# Vraca naziv akta po ID-u
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+SELECT ?naziv FROM <http://www.ftn.uns.ac.rs/XML/tim12/metadata/akt>
+WHERE {
+	<%s> pred:akt_naziv ?naziv.
+}

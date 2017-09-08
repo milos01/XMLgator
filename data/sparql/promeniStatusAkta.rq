@@ -1,0 +1,14 @@
+# menja status jednog akta
+
+PREFIX pred: <http://ftn.uns.ac.rs/XML/tim12/predikati/>
+
+WITH <http://www.ftn.uns.ac.rs/XML/tim12/metadata/akt>
+DELETE {
+	<%1$s> pred:akt_status '%2$s'.
+}
+INSERT {
+	<%1$s> pred:akt_status '%3$s'.
+}
+WHERE {
+	<%1$s> pred:akt_status '%2$s'.
+}
